@@ -11,8 +11,19 @@
 </template>
 
 <script>
+import axios from "axios"
+
 export default {
-  name: "HomePage"
+  name: "HomePage",
+
+  // INIT PING TO SERVER NEEDS TO WAKE UP JAVA API ON HEROKU
+  mounted() {
+    axios
+      .get('https://astronauts-on-orbit-api.herokuapp.com/')
+      .then(response => (
+        this.profile = response.data
+      ));
+  }
 }
 </script>
 
